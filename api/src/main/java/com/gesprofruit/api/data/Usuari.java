@@ -4,6 +4,10 @@ import java.util.Date;
 
 public class Usuari implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1717008527989833270L;
 	private int id_usuari;
 	private String nom_usuari;
 	private String correu_electronic;

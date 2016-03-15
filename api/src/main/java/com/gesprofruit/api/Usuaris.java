@@ -3,13 +3,11 @@ package com.gesprofruit.api;
 import java.io.IOException;
 import java.util.Date;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.codehaus.jackson.JsonGenerationException;
@@ -20,13 +18,13 @@ import org.hibernate.Session;
 import com.gesprofruit.api.data.Usuari;
 import com.gesprofruit.api.util.HibernateUtil;
 
-@Path("/login")
-public class Login {
+@Path("/usuaris")
+public class Usuaris {
 	
 	
 	
 	@POST
-	@Path("/afegirusuari")
+	@Path("/afegir_usuari")
 	public Response addUsuari(@FormParam("nom_usuari") String nom_usuari,
 			@FormParam("correu_electronic") String correu_electronic,
 			@FormParam("contrasenya") String contrasenya){
@@ -51,29 +49,19 @@ public class Login {
 	}
 
 	@GET
-	@Path("/usuari")
-	public Response getUsuari() throws JsonGenerationException, JsonMappingException, IOException{
+	@Path("/obtenir_usuari/{idusuari}")
+	public Response getUsuari(@PathParam("idusuari") int idusuari) throws JsonGenerationException, JsonMappingException, IOException{
 		
 		ObjectMapper mapper = new ObjectMapper();
 		Usuari usuari_login = new Usuari();
 		
-		usuari_login.setId_usuari(1);
+		usuari_login.setId_usuari(idusuari);
 		usuari_login.setNom_usuari("Marc");
 		usuari_login.setCorreu_electronic("marclafita@gmail.com");
 		
 		String output = mapper.writeValueAsString(usuari_login);
 		
 		return Response.status(200).entity(output).build();
-	}
-	
-	@GET
-	@Path("/{param}")
-	public Response getMsg(@PathParam("param") String msg) {
- 
-		String output = "Hello User: " + msg;
- 
-		return Response.status(200).entity(output).build();
- 
 	}
 	
 }
