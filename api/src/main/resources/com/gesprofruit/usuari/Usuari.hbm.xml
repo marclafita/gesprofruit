@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.gesprofruit.api.data.Usuari" table="USUARIS">
+        <id name="id_usuari" type="int">
+            <column name="IDUSUARI" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom_usuari" type="string">
+            <column name="NOM_USUARI" length="20" not-null="true" />
+        </property>
+        <property name="correu_electronic" type="string">
+            <column name="CORREU_ELECTRONIC" length="20" not-null="true" />
+        </property>
+        <property name="contrasenya" type="string">
+            <column name="CONTRASENYA" length="7" not-null="true" />
+        </property>
+        <property name="ultima_conexio" type="date">
+            <column name="ULTIMA_CONEXIO" length="7" not-null="false" />
+        </property>
+    </class>
+</hibernate-mapping>
